@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    {% load static %}
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <title>Alysio de Mattos</title>
+  </head>
+  <body class="bg-gray-200 ">
+
+    <div class="sm:py-20 container y-center text-center">
+
+      <div class="bg-fixed" style="background-image: url(...)">
+        <h4 class="text-center text-gray-400 font-serif font-bold py-12 text-xl select-none"> | ARCHETIER | </h4>
+        <h1 class="p-18 text-yellow-900 font-bold font-serif text-8xl select-none text-center">Alysio de Mattos</h1>
+        <h4 class="text-center text-gray-400 font-serif font-bold py-12 text-xl select-none" > RIO | PARIS | CALIFORNIA </h4>
+      </div>
+
+      <div class="py-16">
+      <nav class="bg-gray-400 shadow-lg transition-all duration-500 ease-in-out opacity sm:py-20">
+        <div class="container mx-auto p-3">
+          <div class="sm:flex justify-around">
+            <!-- Menus  -->
+            <ul class="text-gray-200 sm:self-center text-xl border-t sm:border-none">
+              <li class="sm:inline-block transition duration-100 ease-in-out transform hover:scale-110">
+                <a href="{% url 'home' %}" class="p-6 font-serif font-bold sm:text-3xl">HOME</a>
+              </li>
+              <li class="sm:inline-block transition duration-100 ease-in-out transform hover:scale-110">
+                <a href="{% url 'gallery' %}" class="p-6 font-serif font-bold sm:text-3xl">GALLERY</a>
+              </li>
+              <li class="sm:inline-block transition duration-100 ease-in-out transform hover:scale-110">
+                <a href="{% url 'wood' %}" class="p-6 font-serif font-bold sm:text-3xl">WOOD</a>
+              </li>
+              <li class="sm:inline-block transition duration-100 ease-in-out transform hover:scale-110">
+                <a href="{% url 'aboutme' %}" class="p-6 font-serif font-bold sm:text-3xl">ABOUT ME</a>
+              </li>
+              <li class="sm:inline-block transition duration-100 ease-in-out transform hover:scale-110">
+                <a href="{% url 'contact' %}" class="p-6 font-serif font-bold sm:text-3xl">CONTACT</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      </div>
+
+      <div class="mx-auto lg:w-7/12">
+
+        <div class="flex justify-center px-2 py-2">
+          {% block content %}{% endblock %}
+        </div>
+
+        <div class="p-4">
+          © Alysio de Mattos
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>

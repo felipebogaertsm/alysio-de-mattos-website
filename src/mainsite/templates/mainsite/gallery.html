@@ -1,0 +1,29 @@
+{% extends 'mainsite/base.html' %}
+
+{% block content %}
+
+<div>
+
+    <h2 class="text-3xl text-yellow-900 font-serif font-bold py-10">GALLERY</h2>
+
+    {% for bow in bows %}
+
+    <div class="px-2 rounded-lg shadow p-5">
+        <h4 class="text-2xl font-serif py-1">{{ bow.title }}</h4>
+        <div class="grid grid-cols-3 gap-4 py-4">
+            <div class="flex justify-center">
+                <td><img src="{{ bow.tip.url }}" height="240" width="320" class="border-4 border-black"></td>
+            </div>
+            <div class="flex flex-wrap content-center text-justify">
+                <td>{{ bow.description }}</td>
+            </div>
+            <div class="flex justify-center">
+                <td><img src="{{ bow.frog.url }}" height="240" width="320" class="border-4 border-black"></td>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

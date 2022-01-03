@@ -1,0 +1,48 @@
+{% extends 'mainsite/base.html' %}
+
+{% block content %}
+
+{% load static %}
+
+<div class="container py-10 bg-gray-200 px-4 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-serif font-bold text-yellow-900 py-2">ABOUT ME</h2>
+
+    <div class="py-10 grid grid-cols-2">
+        <img src="{% static 'mainsite/alysio_aboutme.jpg' %}" class="border-4 border-black">
+
+        <p class="font-georgia py-2 text-justify px-2">
+            I was born in Belo Horizonte, Brazil, in 1954. I began my musical studies with my father, Jose Martins de
+            Mattos, a well-known violin teacher and performer. After concluding my Bachelor's Degree in Violin
+            Performance from Fundacao Universidade Mineira de Artes, in 1980, I spent two years in Paris, where I studied
+            violin and chamber music with Marie-Louise and Serge Hurel, at Ecole Normale de Musique.
+        </p>
+    </div>
+
+    <p class="font-georgia py-2 text-justify">
+        From 1985 to 1995, I lived in the United States, first as a student and later, as a professional musician.
+        My academical accomplishments there include: "Master of Arts" in violin performance, under Leopold La Fosse,
+        at The University of Iowa; "Master of Music" in viola performance, under Pamela Ryan; and "Doctor of Music"
+        in violin performance, under Elliot Chapo, at Florida State University.   As a professional violinist and
+        violist, I played in several symphony orchestras and chamber ensembles both, in the United States and in Brazil.
+    </p>
+    <p class="font-georgia py-2 text-justify">
+        As a viola teacher, I worked for four years as an Assistant Professor, at Valdosta State University, in the
+        State of Georgia. In 1995, I returned to my native country, and since 1996, I am an Associate Professor of
+        Viola, at the School of Music of Universidade Federal do Rio de Janeiro.
+    </p>
+    <p class="font-georgia py-2 text-justify">
+        In 1999, I began a research project on contemporary bows, especially French, for the Graduate Department of
+        Music of the Federal University of Rio de Janeiro.   My research project is titled Contemporary French Bowmaking
+        Aspects.
+    </p>
+    <h3 class="text-2xl font-serif text-yellow-900 py-4">My bowmaking background</h3>
+    <p class="font-georgia py-2 text-justify">
+        Although my experience repairing and restoring bows goes as far as 40 years ago, I've been actually making
+        bows since 2006.   As a violinist and violist, I have always been attracted to violins and bows, possibly
+        thanks to my father who was also a collector of violins and bows.   As a bow maker, I've taken lessons from
+        Richard SALAUN and Christian BARTHE, from Paris. It's thanks to them that I learned how to make a bow in its
+        entirety: button, frog, and stick.
+    </p>
+</div>
+
+{% endblock %}
