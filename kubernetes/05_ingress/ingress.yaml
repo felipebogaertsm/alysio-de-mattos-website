@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-hosts
+  namespace: alysio-dm
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "alysio-dm-letsencrypt"
+    nginx.ingress.kubernetes.io/proxy-body-size: 25m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "360"
+spec:
+  tls:
+    - hosts:
+      - "felipebm.com"
+      secretName: "alysio-dm-tls"
+  rules:
+    - host: felipebm.com
+      http:
+        paths:
+          - pathType: "Prefix"
+            path: "/"
+            backend:
+                service:
+                    name: wordpress
+                    port:
+                        number: 80
