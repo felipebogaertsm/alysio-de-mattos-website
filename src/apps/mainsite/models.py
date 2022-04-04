@@ -13,7 +13,6 @@ class Bow(models.Model):
         ("VI", "Violin"),
         ("VO", "Viola"),
         ("CE", "Cello"),
-        ("DB", "Double Bass"),
     ]
     sound_choices = [
         ("Bright", "bright"),
@@ -25,6 +24,15 @@ class Bow(models.Model):
     ]
     shade_choices = [
         ("Light Brown", "light_brown"),
+    ]
+    frog_material_choices = [
+        ("Buffalo horn", "buffalo horn"),
+        ("Ebony", "ebony"),
+    ]
+    button_model_choices = [
+        ("Solid silver", "solid_silver"),
+        ("Three-piece martelé", "three-piece_martelé"),
+        ("Sartory style", "sartory_style"),
     ]
 
     name = models.CharField(max_length=255)
@@ -39,6 +47,9 @@ class Bow(models.Model):
     sound = models.CharField(blank=True, null=True, choices=sound_choices)
     shape = models.CharField(blank=True, null=True, choices=shape_choices)
     shade = models.CharField(blank=True, null=True, choices=shade_choices)
+    frog_material = models.CharField(
+        blank=True, null=True, choices=frog_material_choices
+    )
 
     tip = models.ImageField(upload_to="mainsite/media/")
     frog = models.ImageField(upload_to="mainsite/media/")
