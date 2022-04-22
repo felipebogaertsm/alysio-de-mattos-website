@@ -14,10 +14,10 @@ metadata:
 spec:
   tls:
     - hosts:
-      - "felipebm.com"
+      - "alysiodemattos.com"
       secretName: "alysio-dm-tls"
   rules:
-    - host: felipebm.com
+    - host: alysiodemattos.com
       http:
         paths:
           - pathType: "Prefix"
