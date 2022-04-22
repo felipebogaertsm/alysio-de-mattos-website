@@ -72,4 +72,3 @@ spec:
   selector:
     app: wordpress
     tier: frontend
-  type: NodePort

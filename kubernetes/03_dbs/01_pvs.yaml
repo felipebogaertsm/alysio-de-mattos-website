@@ -7,9 +7,9 @@ metadata:
     app: wordpress
     tier: frontend
 spec:
-  storageClassName: hostpath
+  storageClassName: manual
   capacity:
-    storage: 10Gi
+    storage: 5Gi
   accessModes:
     - ReadWriteMany
   hostPath:
@@ -18,16 +18,16 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: mysql-persistent-storage
+  name: wordpress-persistent-storage
   namespace: alysio-dm
   labels:
     app: wordpress
     tier: mysql
 spec:
-  storageClassName: hostpath
+  storageClassName: manual
   capacity:
-    storage: 10Gi
+    storage: 5Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   hostPath:
-    path: /data/alysio-dm-mysql
+    path: /data/alysio-dm-wp
