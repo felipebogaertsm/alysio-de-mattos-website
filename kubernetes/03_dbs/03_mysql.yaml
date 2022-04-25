@@ -6,16 +6,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: mysql
+      app: wordpress-mysql
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: mysql
+        app: wordpress-mysql
     spec:
       containers:
-        - image: mysql:5.6
+        - image: mysql:5.7
           name: mysql
           env:
           - name: MYSQL_ROOT_PASSWORD
@@ -40,7 +40,7 @@ spec:
                 key: database
           ports:
             - containerPort: 3306
-              name: mysql
+              name: wordpress-mysql
           volumeMounts:
             - name: mysql-persistent-storage
               mountPath: /var/lib/mysql
@@ -57,9 +57,10 @@ metadata:
   labels:
     app: wordpress
 spec:
+  type: ClusterIP
   ports:
     - port: 3306
       targetPort: 3306
+      protocol: TCP
   selector:
-    app: wordpress
-    tier: mysql
+    app: wordpress-mysql

@@ -9,23 +9,19 @@ spec:
   selector:
     matchLabels:
       app: wordpress
-      tier: frontend
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         app: wordpress
-        tier: frontend
     spec:
       containers:
-      - image: wordpress:5.9.2-apache
+      - image: wordpress:5.9.3-apache
         name: wordpress
         env:
-        - name: WORDPRESS_DB_HOST
+        - name: WORDPRESS_DATABASE_HOST
           value: wordpress-mysql
-        - name: WORDPRESS_MYSQL_PORT
-          value: "3306"
         - name: WORDPRESS_DB_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -69,6 +65,7 @@ metadata:
 spec:
   ports:
     - port: 80
+      targetPort: 80
+      protocol: TCP
   selector:
     app: wordpress
-    tier: frontend
