@@ -1,0 +1,37 @@
+wordpressUsername: admin
+existingSecret: wp-secrets
+wordpressBlogName: Alysio de Mattos
+
+extraVolumes:
+  - name: php-config
+    configMap:
+      defaultMode: 420
+      name: wp-php-config
+extraVolumeMounts:
+  - name: php-config
+    mountPath: /usr/local/etc/php/conf.d/uploads.ini
+    subPath: uploads.ini
+
+service:
+  type: NodePort
+ingress:
+  enabled: true
+  pathType: "Prefix"
+  apiVersion: networking.k8s.io/v1
+  ingressClassName: "nginx"
+  hostname: alysiodemattos.com
+  annotations: 
+    cert-manager.io/cluster-issuer: "alysio-dm-letsencrypt"
+    nginx.ingress.kubernetes.io/proxy-body-size: 512m
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
+    nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "360"
+
+mariadb:
+  enabled: true
+  auth:
+    rootPassword: "tZxHVpgnJQNs6Utk"
+    database: alysio_dm
+    username: admin
+    password: "tZxHVpgnJQNs6Utk"
