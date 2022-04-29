@@ -15,7 +15,7 @@ spec:
         app: wordpress-mysql
     spec:
       containers:
-        - image: mysql:5.7
+        - image: mariadb:10.8
           name: mysql
           env:
           - name: MYSQL_ROOT_PASSWORD
@@ -47,7 +47,7 @@ spec:
       volumes:
         - name: mysql-persistent-storage
           persistentVolumeClaim:
-            claimName: mysql-persistent-storage
+            claimName: alysio-dm-mysql-pvc
 ---
 apiVersion: v1
 kind: Service

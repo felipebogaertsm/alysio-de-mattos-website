@@ -49,7 +49,7 @@ spec:
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
-          claimName: wordpress-persistent-storage
+          claimName: alysio-dm-wordpress-pvc
       - configMap:
           defaultMode: 420
           name: wp-php-config
