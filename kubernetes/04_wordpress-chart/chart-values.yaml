@@ -1,6 +1,7 @@
 wordpressUsername: admin
 existingSecret: wp-secrets
 wordpressBlogName: Alysio de Mattos
+wordpressExtraConfigContent: "@ini_set('upload_max_filesize', '512M');"
 
 extraVolumes:
   - name: php-config
