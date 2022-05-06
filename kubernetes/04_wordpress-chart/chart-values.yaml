@@ -22,14 +22,17 @@ ingress:
   ingressClassName: "nginx"
   hostname: alysiodemattos.com
   annotations:
-    cert-manager.io/cluster-issuer: "alysio-dm-letsencrypt"
+    cert-manager.io/cluster-issuer: alysio-dm-letsencrypt
     nginx.ingress.kubernetes.io/proxy-body-size: 512m
     nginx.ingress.kubernetes.io/proxy-connect-timeout: "360"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "360"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "360"
     nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "360"
-  tls: true
-  selfSigned: true
+  certManager: true
+  extraTls:
+    - hosts:
+      - "alysiodemattos.com"
+      secretName: "alysio-dm-tls"
 
 mariadb:
   enabled: true

@@ -3,10 +3,12 @@ kind: ClusterIssuer
 metadata:
   name: alysio-dm-letsencrypt
   namespace: alysio-dm
+  labels:
+    name: alysio-dm-letsencrypt
 spec:
   acme:
     server: https://acme-v02.api.letsencrypt.org/directory
-    email: me@felipebm.com
+    email: felipebogaerts@gmail.com
     privateKeySecretRef:
       name: alysio-dm-letsencrypt
     solvers:
