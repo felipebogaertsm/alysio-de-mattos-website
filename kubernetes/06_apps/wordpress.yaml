@@ -9,38 +9,50 @@ spec:
   selector:
     matchLabels:
       component: wordpress
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
         component: wordpress
     spec:
+      restartPolicy: Always
       containers:
-      - image: wordpress:5.9.3
+      - image: bitnami/wordpress
         name: wordpress
         env:
         - name: WORDPRESS_DATABASE_HOST
           value: wordpress-mysql
-        - name: WORDPRESS_DATABASE_PORT
-          value: '3306'
-        - name: WORDPRESS_DB_PASSWORD
+        - name: WORDPRESS_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: wp-secrets
+              key: user
+        - name: WORDPRESS_BLOG_NAME
+          valueFrom:
+            secretKeyRef:
+              name: wp-secrets
+              key: blogName
+        - name: WORDPRESS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: wp-secrets
+              key: password
+        - name: WORDPRESS_DATABASE_PASSWORD
           valueFrom:
             secretKeyRef:
               name: db-secrets
               key: password
-        - name: WORDPRESS_DB_USER
+        - name: WORDPRESS_DATABASE_USER
           valueFrom:
             secretKeyRef:
               name: db-secrets
               key: user
-        - name: WORDPRESS_DB_NAME
+        - name: WORDPRESS_DATABASE_NAME
           valueFrom:
             secretKeyRef:
               name: db-secrets
               key: database
         ports:
-        - containerPort: 80
+        - containerPort: 8080
           name: wordpress
         volumeMounts:
         - name: wordpress-persistent-storage
@@ -65,7 +77,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 8080
       protocol: TCP
   selector:
     component: wordpress
