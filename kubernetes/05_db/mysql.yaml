@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-mysql
+  namespace: alysio-dm
+spec:
+  selector:
+    matchLabels:
+      component: mysql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        component: mysql
+    spec:
+      containers:
+        - image: mariadb:10.8
+          name: mysql
+          env:
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: password
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: password
+          - name: MYSQL_USER
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: user
+          - name: MYSQL_DATABASE
+            valueFrom:
+              secretKeyRef:
+                name: db-secrets
+                key: database
+          ports:
+            - containerPort: 3306
+              name: wordpress-mysql
+          volumeMounts:
+            - name: mysql-volume
+              mountPath: /var/lib/mysql
+              subPath: alysio-dm-mysql
+      volumes:
+        - name: mysql-volume
+          persistentVolumeClaim:
+            claimName: alysio-dm-mysql-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: alysio-dm
+  name: wordpress-mysql
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
+  selector:
+    component: mysql
